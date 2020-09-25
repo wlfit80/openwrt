@@ -65,12 +65,7 @@ jobs:
       - name: Generate configuration file
         run: |
           curl -fsSL https://git.io/JUgLQ > .config
-          make defconfig
-      - name: ls -a via ssh
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: ls -a
-        if: env.SSH_ACTIONS == 'true'     
+          make defconfig   
         
       - name: Make download
         run: |
