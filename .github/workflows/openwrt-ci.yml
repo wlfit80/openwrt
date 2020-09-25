@@ -1,25 +1,19 @@
 
-name: OpenWr
+name: OpenWrt-CI
 
 on:
-  push:
-    branches: 
-      - master
-  #     ↑↑↑ 改成你的分支名, 一般是master
-#on:
-#  #schedule:
-#    #- cron: 0 20 * * *
+  repository_dispatch:
+  release:
+    types: published
 #  push:
-#    tags:
-#      - '*'
-env:
-  FREE_UP_DISK: false
-  SSH_ACTIONS: true
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: true
-  TZ: Asia/Shanghai
-
-
+#    branches:
+#      - main
+#    paths:
+#      - 'all.config'
+  schedule:
+    - cron: 0 22 */2 * * 
+  watch:
+    types: started
 jobs:
 
   build_openwrt:
@@ -61,10 +55,6 @@ jobs:
         run: |
           curl -fsSL https://git.io/JUgLQ > .config
           make defconfig
-
-      - name: SSH connection to Actions
-        uses: P3TERX/debugger-action@master
-        if: env.SSH_ACTIONS == 'true' 
 
       - name: Make download
         run: |
