@@ -1,25 +1,25 @@
 
 name: OpenWr
 
+on:
+  push:
+    branches: 
+      - master
+  #     ↑↑↑ 改成你的分支名, 一般是master
+#on:
+#  #schedule:
+#    #- cron: 0 20 * * *
+#  push:
+#    tags:
+#      - '*'
 env:
+  FREE_UP_DISK: false
   SSH_ACTIONS: true
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
 
 
-
-on:
-  repository_dispatch:
-  release:
-    types: published
-#  push:
-#    branches:
-#      - main
-#    paths:
-#      - 'all.config'
-  schedule:
-    - cron: 0 22 */2 * * 
-  watch:
-    types: started
 jobs:
 
   build_openwrt:
