@@ -1,5 +1,5 @@
 
-name: OpenWrt-CI
+name: OpenWrt-CI-x86
 
 on:
   repository_dispatch:
