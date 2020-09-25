@@ -1,5 +1,13 @@
 name: OpenWrt-mini-CI
 
+    
+env:
+  FREE_UP_DISK: false
+  SSH_ACTIONS: true
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  TZ: Asia/Shanghai
+
 on:
   repository_dispatch:
   release:
@@ -14,13 +22,7 @@ on:
   watch:
     types: started
     
-    
-env:
-  FREE_UP_DISK: false
-  SSH_ACTIONS: true
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: true
-  TZ: Asia/Shanghai    
+
 
 jobs:
 
@@ -65,7 +67,7 @@ jobs:
           curl -fsSL https://git.io/JUgLQ > .config
           make defconfig
       - name: SSH connection to Actions
-        uses: P3TERX/debugger-action@master
+        uses: P3TERX/action@master
         if: env.SSH_ACTIONS == 'true'     
         
       - name: Make download
