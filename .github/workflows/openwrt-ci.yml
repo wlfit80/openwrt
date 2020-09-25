@@ -1,10 +1,8 @@
 
-name: OpenWrt-CI
+name: OpenWr
+
 env:
-  FREE_UP_DISK: false
   SSH_ACTIONS: true
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
 
 
